@@ -5,7 +5,10 @@
 
 
 int sum(const std::vector<int>& values){
-	return 0;
+	int sum = 0;
+	for each(int val in values)
+		sum+=val;
+	return sum;
 }
 
 // write the sum function
@@ -28,7 +31,7 @@ void sortFunction(
 	std::vector<int>::iterator begin,
 	std::vector<int>::iterator end)
 {
-
+	std::sort(begin, end);
 }
 
 // write the content of sort
@@ -42,6 +45,34 @@ TEST(ex2, test2)
 }
 
 //***********************************************************
+
+
+class A
+{
+public:
+	A(bool valid) : valid_(valid){}
+	bool is_Valid() const { return valid_; }
+private:
+	bool valid_;
+};
+
+void removeInvalid(std::vector<A>&aray)
+{
+	/*std::vector<A>::iterator it = aray.begin();
+	while (it != aray.end())
+		it = it->is_Valid();*/
+	/*aray.end() = std::remove_if(aray.begin(), aray.end(), false);
+	aray.shrink_to_fit();*/
+}
+
+TEST(ex2, test3)
+{
+	std::vector<A> array = { A(true), A(false), A(true), A(false), A(true), A(false) };
+
+	EXPECT_EQ(6, array.size());
+	removeInvalid(array);
+	EXPECT_EQ(3, array.size());
+}
 
 
 
